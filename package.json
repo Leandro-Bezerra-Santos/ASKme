@@ -1,0 +1,24 @@
+{
+  "name": "askme",
+  "version": "1.0.0",
+  "description": "A question-and-answer project built with Node.js, Express, EJS, and MySQL, allowing users to submit questions and respond to others while practicing routes, parameters, and basic database operations.",
+  "homepage": "https://github.com/Leandro-Bezerra-Santos/ASKme#readme",
+  "bugs": {
+    "url": "https://github.com/Leandro-Bezerra-Santos/ASKme/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leandro-Bezerra-Santos/ASKme.git"
+  },
+  "license": "ISC",
+  "author": "Leandro Bezerra",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}
