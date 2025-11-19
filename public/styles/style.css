@@ -1,0 +1,17 @@
+body{
+    background-color: #cfdee9;
+}
+
+
+
+.navbar{
+    background-color: #e3f2fd;
+}
+
+.navbar a img{
+    width: 20%;
+}
+
+.container{
+    margin-top: 5vh;
+}

@@ -12,13 +12,17 @@
   },
   "license": "ISC",
   "author": "Leandro Bezerra",
-  "type": "module",
+  "type":"module",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js"
   },
   "dependencies": {
+    "body-parser": "^2.2.0",
+    "bootstrap": "^5.3.8",
     "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mysql2": "^3.15.3",
+    "sequelize": "^6.37.7"
   }
 }
