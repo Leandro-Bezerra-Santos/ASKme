@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { connection } from './database/database.js';
 import { askModel } from './database/Ask.js';
+import { responsesModel } from './database/Responses.js';
 
 const app = express();
 
@@ -22,7 +23,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    askModel.findAll({raw: true}).then(asks =>{
+    askModel.findAll({raw: true, order:[
+      ['id', 'DESC'] // ASC == Crescente || DESC ==  Decrecente
+    ]}).then(asks =>{
       res.render('index.ejs', {
         asks
       })
@@ -44,6 +47,22 @@ app.post('/savetheasks', (req,res) => {
   })
  
 })
+
+app.get('/ask/:id', (req,res) => {
+  const id = req.params.id;
+
+  askModel.findOne({
+    where: { id: id }
+  }).then(ask =>{
+    if(ask != undefined){
+      res.render('ask-card.ejs',{
+        ask:ask
+      })
+    }else{
+      res.redirect('/')
+    }
+  })
+});
 
 app.listen(8080, (err) => {  
   if (err) {
