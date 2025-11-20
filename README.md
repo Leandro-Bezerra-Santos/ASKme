@@ -11,6 +11,9 @@ EJS (Embedded JavaScript Templates)
 Bootstrap 5
 CSS / JS estático
 
+## 📸 Screenshot da Aplicação
+
+<img src="./image.png" width="800">
 
 ## 🧠 Como o Projeto Funciona
 ✔ Criar Perguntas
