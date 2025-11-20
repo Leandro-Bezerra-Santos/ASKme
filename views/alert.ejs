@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+<body>
+<%- include('partials/navbar') %>
+<!-- Modal -->
+<div class="modal fade show" id="alertModal" tabindex="-1" style="display:block; background:rgba(0,0,0,0.5);" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Attention</h5>
+      </div>
+
+      <div class="modal-body">
+        <p>Please fill in the required field to submit your response.</p>
+      </div>
+
+      <div class="modal-footer">
+        <a href="/ask/<%= askId %>" class="btn btn-danger">Go Back</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+
+<script>
+  // Força o modal abrir automaticamente
+  const modal = new bootstrap.Modal(document.getElementById('alertModal'), {
+    backdrop: 'static',
+    keyboard: false
+  });
+  modal.show();
+
+  // Redireciona automaticamente após 2 segundos
+  setTimeout(() => {
+    window.location.href = "/ask/<%= askId %>";
+  }, 1500);
+</script>
+

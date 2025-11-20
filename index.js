@@ -17,6 +17,7 @@ connection.authenticate()
 
 // Sets EJS as the template engine used to render dynamic views
 app.set('view enginer', 'ejs');
+app.set('views', './views');
 // Serves static files (CSS, images, JS) from the "public" directory
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -55,13 +56,43 @@ app.get('/ask/:id', (req,res) => {
     where: { id: id }
   }).then(ask =>{
     if(ask != undefined){
-      res.render('ask-card.ejs',{
-        ask:ask
+      responsesModel.findAll({
+        where:{
+          askId: ask.id
+        }, order: [ ['id', 'DESC']]
+      }).then(responses =>{
+        res.render('ask-card.ejs',{
+        ask:ask,
+        responses: responses
+      })
       })
     }else{
       res.redirect('/')
     }
   })
+});
+
+app.post('/responses', (req, res) =>{
+  const body = req.body.body;
+  const askId = req.body.askId;
+
+  if(body != ''){
+    responsesModel.create({
+      body: body,
+      askId: askId
+    }) .then( () => {
+        res.redirect(`/ask/${askId}`);
+    })
+  }else{
+    res.redirect(`/alert?askId=${askId}`);
+  }
+   
+})
+
+// Rota da tela de alerta
+app.get('/alert', (req, res) => {
+  const askId = req.query.askId;
+  res.render('alert.ejs', { askId });
 });
 
 app.listen(8080, (err) => {  
